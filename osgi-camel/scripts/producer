@@ -1,0 +1,5 @@
+#!/bin/bash
+# - a application to add messages to the rabbit mq
+#
+git clone https://github.com/scrappy1987/Producer ~/producer
+

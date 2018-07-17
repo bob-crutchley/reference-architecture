@@ -1,0 +1,10 @@
+#!/bin/bash
+# - add the vagrant user to the docker group
+# 	so that the docker service can be accessed
+# 	without having to use 'sudo'
+# - start and enable the docker service on
+# 	startup
+sudo groupadd docker
+sudo usermod -aG docker vagrant
+sudo systemctl start docker
+sudo systemctl enable docker
