@@ -3,12 +3,11 @@
 # 	courtesy of John Gordon (https://github.com/scrappy1987/tracker-docker)
 # - run mysql db server for the docker-tracker app
 #
-newgrp docker
+sudo su - dockeradm <<EOF
 git clone https://github.com/scrappy1987/tracker-docker
 cd tracker-docker
 mvn clean package docker:build 
-# mysql db
 docker run --name trainer-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=trainer -e MYSQL_USER=trainer_user -e MYSQL_PASSWORD=trainer_pass -d mysql:5.6
-# tracker app
 docker run -p 8080:8080 --name trainer-app --link trainer-mysql:mysql -d trainer/trainer-tracker
+EOF
 

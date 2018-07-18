@@ -50,7 +50,7 @@ end
 def run_install_scripts(host, host_vm)
 	unless host['scripts'].nil?
 		host['scripts'].each do |script|
-  			host_vm.vm.provision "shell", privileged: false, path: "scripts/#{script}"
+  			host_vm.vm.provision "shell", privileged: false, path: "vagrant_scripts/#{script}"
 		end
 	end
 end

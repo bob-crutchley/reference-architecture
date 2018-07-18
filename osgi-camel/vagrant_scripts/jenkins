@@ -1,0 +1,15 @@
+#!/bin/bash
+sudo useradd jenkins
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum install jenkins
+sudo mkdir -p /usr/share/jenkins/ref/init.groovy.d
+cp /vagrant/jenkins/init.groovy /usr/share/jenkins/ref/init.groovy.d/
+sudo su - jenkins <<EOF
+echo 'JAVA_OPTS="-Djenkins.install.runSetupWizard=false"' >> ~/.bash_profile
+source ~/.bash_profile
+/usr/local/bin/install-plugins.sh < /vagrant/jenkins/plugins.txt 
+EOF
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+

@@ -6,5 +6,7 @@
 # 	startup
 sudo groupadd docker
 sudo usermod -aG docker vagrant
+sudo usermod -aG docker jenkins
 sudo systemctl start docker
 sudo systemctl enable docker
+
